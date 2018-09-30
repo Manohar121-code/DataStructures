@@ -47,19 +47,19 @@ public class ShortestPathByValue {
 		copyArr = new int[rows][cols];
 		obj.fillMaxValues();
 		// start & end points
-		int x1 = 12, y1 = 2;
-		x2 = 0;
-		y2 = 8;
+		int x1 = 0, y1 = 0;
+		x2 = 14;
+		y2 = 12;
 		// validation
 		if (obj.validate(x1, y1, x2, y2)) {
 			long startTime = System.nanoTime();
 			copyArr[x1][y1] = arr[x1][y1];
 			obj.doRecursion(arr, x1, y1, arr[x1][y1]);
 			long endTime = System.nanoTime();
-			System.out.println(shortest);
 			obj.printArray(arr);
 			System.out.println("------------------------");
 			obj.printArray(copyArr);
+			System.out.println(shortest);
 			System.out.println(endTime - startTime);
 		}
 	}
