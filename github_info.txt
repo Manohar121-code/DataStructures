@@ -1,0 +1,4 @@
+add file to github : 
+git add .
+git commit -m "Add existing file"           (git commit -m "Move file to new directory")
+git push origin master
