@@ -1,7 +1,7 @@
 ADD FILE TO GITHUB : 
 git add .
-git push origin master
 git commit -m "Add existing file"           (git commit -m "Move file to new directory")
+git push origin master
 
 Git STATUS : 
 git status
