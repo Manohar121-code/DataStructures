@@ -14,32 +14,32 @@ public class MyStack {
 		top = -1;
 	}
 	
-	private void push(int n) {
+	public void push(int n) {
 		if (top >= LIMIT) {
 			throw new IndexOutOfBoundsException("stack overflown");
 		}
 		arr[++top] = n;
 	}
 	
-	private int pop() {
+	public int pop() {
 		if (isEmpty()) {
 			throw new NoSuchElementException("stack underflown");
 		}
 		return arr[top--];
 	}
 	
-	private int peek() {
+	public int peek() {
 		if (isEmpty()) {
 			throw new NoSuchElementException("stack underflown");
 		}
 		return arr[top];
 	}
 	
-	private boolean isEmpty() {
+	public boolean isEmpty() {
 		return (top == -1);
 	}
 	
-	private void popAllElements() {
+	public void popAllElements() {
 		System.out.println("Showing all elements in stack");
 		while (!isEmpty()) {
 			System.out.print(pop()+" ");

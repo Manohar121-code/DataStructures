@@ -13,7 +13,7 @@ public class MyQueue {
 		rear = front = -1;
 	}
 	
-	private void push(int n) {
+	public void push(int n) {
 		if (size() >= LIMIT) {
 			throw new IndexOutOfBoundsException("queue overflown");
 		}
@@ -22,29 +22,29 @@ public class MyQueue {
 		arr[++rear] = n;
 	}
 	
-	private int pop() {
+	public int pop() {
 		if (isEmpty()) {
 			throw new NoSuchElementException("queue underflown");
 		}
 		return arr[front++];
 	}
 	
-	private int peek() {
+	public int peek() {
 		if (isEmpty()) {
 			throw new NoSuchElementException("queue underflown");
 		}
 		return arr[front];
 	}
 	
-	private boolean isEmpty() {
+	public boolean isEmpty() {
 		return size() == 0;
 	}
 	
-	private int size() {
+	public int size() {
 		return (rear+1) - front;
 	}
 	
-	private void popAllElements() {
+	public void popAllElements() {
 		System.out.println("Showing all elements in queue");
 		while (!isEmpty()) {
 			System.out.print(pop()+" ");
