@@ -5,3 +5,6 @@ git push origin master
 
 Git STATUS : 
 git status
+
+LRU CACHE :
+https://leetcode.com/problems/lru-cache/discuss/45911/Java-Hashtable-+-Double-linked-list-(with-a-touch-of-pseudo-nodes)
