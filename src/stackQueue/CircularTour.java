@@ -22,6 +22,37 @@ public class CircularTour {
 		System.out.println(tour);
 	}
 	
+	private int doOperation(int[] petrol, int[] distance) {
+		Queue<Integer> queueObj = new LinkedList<Integer>();
+		for (int i = 0; i < petrol.length; i++) {
+			if (doCheck(i, petrol, distance, new LinkedList<Integer>(queueObj)))
+				return i;
+			queueObj.add(i);
+		}
+		return -1;
+	}
+	
+	private boolean doCheck(int i, int[] petrol, int[] distance,
+			LinkedList<Integer> queueObj) {
+		int storedPetrol = 0;
+		for (int j = i; j < distance.length; j++) {
+			storedPetrol += petrol[j];
+			if (distance[j] > storedPetrol)
+				return false;
+			storedPetrol -= distance[j];
+		}
+		while (!queueObj.isEmpty()) {
+			int index = queueObj.poll();
+			int intPetrol = petrol[index];
+			int intDistance = distance[index];
+			storedPetrol += intPetrol;
+			if (intDistance > storedPetrol)
+				return false;
+			storedPetrol -= intDistance;
+		}
+		return true;
+	}
+	
 	private int byGFG(int petrol[], int distance[]) {
 		int n = petrol.length;
 		int tpetrol = 0;
@@ -41,36 +72,5 @@ public class CircularTour {
 			}
 		}
 		return start;
-	}
-
-	private int doOperation(int[] petrol, int[] distance) {
-		Queue<Integer> queueObj = new LinkedList<Integer>();
-		for (int i = 0; i < petrol.length; i++) {
-			if (doCheck(i, petrol, distance, new LinkedList<Integer>(queueObj)))
-				return i;
-			queueObj.add(petrol[i]);
-			queueObj.add(distance[i]);
-		}
-		return -1;
-	}
-
-	private boolean doCheck(int i, int[] petrol, int[] distance,
-			LinkedList<Integer> queueObj) {
-		int storedPetrol = 0;
-		for (int j = i; j < distance.length; j++) {
-			storedPetrol += petrol[j];
-			if (distance[j] > storedPetrol)
-				return false;
-			storedPetrol -= distance[j];
-		}
-		while (!queueObj.isEmpty()) {
-			int intPetrol = queueObj.poll();
-			int intDistance = queueObj.poll();
-			storedPetrol += intPetrol;
-			if (intDistance > storedPetrol)
-				return false;
-			storedPetrol -= intDistance;
-		}
-		return true;
 	}
 }
