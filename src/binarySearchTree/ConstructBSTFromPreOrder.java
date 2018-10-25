@@ -21,21 +21,21 @@ public class ConstructBSTFromPreOrder {
 	
 	private void doOperation(int[] arr) {
 		root = null;
-		root = constructBstByPreOrder(root, arr, 0, arr.length-1);
+		root = constructBstByPreOrder(arr, 0, arr.length-1);
 	}
 
-	private MyBSTNode constructBstByPreOrder(MyBSTNode node, int[] arr, int start, int end) {
+	private MyBSTNode constructBstByPreOrder(int[] arr, int start, int end) {
 		if (start > end) {
 			return null;
 		}
-		node = new MyBSTNode(arr[start]);
+		MyBSTNode node = new MyBSTNode(arr[start]);
 		int nextGreaterIndex = getNextGreaterElement(arr, start, end);
 		//create left & right of node by recursion
 		if (start+1 < nextGreaterIndex) {
-			node.left = constructBstByPreOrder(node.left, arr, start+1, nextGreaterIndex-1);
+			node.left = constructBstByPreOrder(arr, start+1, nextGreaterIndex-1);
 		}
 		if (nextGreaterIndex >= start+1) {
-			node.right = constructBstByPreOrder(node.right, arr, nextGreaterIndex, end);
+			node.right = constructBstByPreOrder(arr, nextGreaterIndex, end);
 		}
 		return node;
 	}
