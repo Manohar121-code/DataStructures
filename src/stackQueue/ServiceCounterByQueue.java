@@ -5,6 +5,9 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class ServiceCounterByQueue {
+	
+	private static int serviceDuration = 3;
+	
 	public static void main(String[] args) {
 		ServiceCounterByQueue obj = new ServiceCounterByQueue();
 		Scanner scr = new Scanner(System.in);
@@ -17,20 +20,22 @@ public class ServiceCounterByQueue {
 	private void doService(int totalTime, int[] arr) {
 		int arrCounter = 0;
 		Queue<Integer> queueObj = new LinkedList<Integer>();
-		/*while (arrCounter < arr.length && arr[arrCounter] >= 0 && arr[arrCounter] <= 0) {
-			queueObj.add(arr[arrCounter++]);
-		}*/
+		boolean exit = false;
 		for (int i = -1; i < totalTime;) {
+			i++;
 			if (!queueObj.isEmpty()) {
 				queueObj.poll();
-				i = i+2;
+				i = i+(serviceDuration-1);
 			}
-			i++;
 			if (i >= totalTime) {
-				i = totalTime;
+				i = totalTime-1;
+				exit = true;
 			}
 			while (arrCounter < arr.length && arr[arrCounter] >= 0 && arr[arrCounter] <= i) {
 				queueObj.add(arr[arrCounter++]);
+			}
+			if (exit) {
+				break;
 			}
 		}
 		while (!queueObj.isEmpty()) {
