@@ -99,6 +99,19 @@ public class MyAVLTree {
 		root = insert(root, data);
 	}
 	
+	private int countNodes(AVLNode node) {
+		if (node == null)
+			return 0;
+		int n = 1;
+		n += countNodes(node.left);
+		n += countNodes(node.right);
+		return n;
+	}
+
+	public int countNodes() {
+		return countNodes(root);
+	}
+	
 	public static void main(String[] args) {
 		MyAVLTree avlTreeObj = new MyAVLTree();
 		avlTreeObj.insert(10);
@@ -109,6 +122,9 @@ public class MyAVLTree {
 		avlTreeObj.insert(60);
 		avlTreeObj.insert(70);
 		avlTreeObj.insert(80);
+		
+		int numOfNodes = avlTreeObj.countNodes();
+		System.out.println("Number nodes : "+ numOfNodes);
 	}
 
 }
