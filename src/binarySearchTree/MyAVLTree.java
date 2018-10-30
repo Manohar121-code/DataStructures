@@ -97,6 +97,7 @@ public class MyAVLTree {
 	
 	public void insert(int data) {
 		root = insert(root, data);
+		System.out.println("Inserted "+ data);
 	}
 	
 	private int countNodes(AVLNode node) {
@@ -112,6 +113,30 @@ public class MyAVLTree {
 		return countNodes(root);
 	}
 	
+	private boolean search(AVLNode root, int k) {
+		if (root == null)
+			return false;
+		if (root.data == k) {
+			return true;
+		} else if (k < root.data) {
+			return search(root.left, k);
+		} else {
+			return search(root.right, k);
+		}
+	}
+	
+	private boolean search(int k) {
+		return search(root, k);
+	}
+	
+	private void delete(AVLNode node, int k) {
+		
+	}
+	
+	public void delete(int k) {
+		delete(root, k);
+	}
+
 	public static void main(String[] args) {
 		MyAVLTree avlTreeObj = new MyAVLTree();
 		avlTreeObj.insert(10);
@@ -125,6 +150,11 @@ public class MyAVLTree {
 		
 		int numOfNodes = avlTreeObj.countNodes();
 		System.out.println("Number nodes : "+ numOfNodes);
+		
+		int k = 780;
+		System.out.println((avlTreeObj.search(k) ? "Found " : "Not found ")+ k);
+		
+		avlTreeObj.delete(50);
 	}
 
 }
