@@ -129,12 +129,59 @@ public class MyAVLTree {
 		return search(root, k);
 	}
 	
-	private void delete(AVLNode node, int k) {
-		
+	private int getBalance(AVLNode node) {
+		if (node == null)
+			return 0;
+		return height(node.left) - height(node.right);
+	}
+	
+	private int getLeastFromRightSubTree(AVLNode node) {
+		if (node != null && node.left != null) {
+			node = node.left;
+		}
+		return node.data;
+	}
+	
+	private AVLNode delete(AVLNode node, int k) {
+		if (k < node.data) {
+			node.left = delete(node.left, k);
+		} else if (k > node.data) {
+			node.right = delete(node.right, k);
+		} else {
+			if (node.left == null && node.right == null)
+				node = null;
+			else if (node.left == null)
+				node = node.right;
+			else if (node.right == null)
+				node = node.left;
+			else {
+				int lessRightTreeData = getLeastFromRightSubTree(node.right);
+				node.data = lessRightTreeData;
+				delete(node.right, lessRightTreeData);
+			}
+		}
+		if (node == null)
+			return node;
+		node.height = Math.max(height(node.left), height(node.right)) + 1;
+		int balance = getBalance(node);
+		if (balance > 1 && getBalance(node.left) >= 0) {
+			return rightRotation(node);
+		}
+		if (balance > 1 && getBalance(node.left) < 0) {
+			return leftRightRotation(node);
+		}
+		if (balance < -1 && getBalance(node.right) <= 0) {
+			return leftRotation(node);
+		}
+		if (balance < -1 && getBalance(node.right) > 0) {
+			return rightLeftRotation(node);
+		}
+		return node;
 	}
 	
 	public void delete(int k) {
-		delete(root, k);
+		root = delete(root, k);
+		System.out.println("Deleted : "+ k);
 	}
 
 	public static void main(String[] args) {
