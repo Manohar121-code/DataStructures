@@ -1,16 +1,10 @@
 package binarySearchTree;
 
-import java.util.Scanner;
-
 public class MyBST {
 	MyBSTNode root;
 
 	public void insert(int data) {
-		if (root == null) {
-			root = new MyBSTNode(data);
-			return;
-		}
-		insert(root, data);
+		root = insert(root, data);
 	}
 
 	public MyBSTNode insert(MyBSTNode node, int data) {
