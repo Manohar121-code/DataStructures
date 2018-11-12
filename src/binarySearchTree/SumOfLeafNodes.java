@@ -13,7 +13,7 @@ public class SumOfLeafNodes {
 
 		SumOfLeafNodes obj = new SumOfLeafNodes();
 		
-		MyBSTNode lcaObj = obj.FindLCA(bstObj.root, n1, n2);
-		System.out.println(lcaObj != null ? lcaObj.data : "Nothing found");
+//		MyBSTNode lcaObj = obj.FindLCA(bstObj.root, n1, n2);
+//		System.out.println(lcaObj != null ? lcaObj.data : "Nothing found");
 	}
 }
