@@ -15,10 +15,22 @@ public class DeleteNodesGreaterThan_K {
 		
 		DeleteNodesGreaterThan_K obj = new DeleteNodesGreaterThan_K();
 		int k = 12;
-		MyBSTNode root = obj.deleteNodesGreaterThan_K(bstObj.root, k);
+		MyBSTNode root = obj.byGFG(bstObj.root, k);
+//		MyBSTNode root = obj.deleteNodesGreaterThan_K(bstObj.root, k);
 		bstObj.inOrder(root);
 	}
 	
+	private MyBSTNode byGFG(MyBSTNode root, int k) {
+		if (root == null)
+			return null;
+		if (root.data >= k) {
+			return byGFG(root.left, k);
+		} else {
+			root.right = byGFG(root.right, k);
+			return root;
+		}
+	}
+
 	private MyBSTNode deleteNodesGreaterThan_K(MyBSTNode root, int k) {
 		while (root != null && root.data >= k) {
 			root = root.left;
