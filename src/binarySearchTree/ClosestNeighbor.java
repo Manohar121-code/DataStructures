@@ -28,11 +28,11 @@ public class ClosestNeighbor {
 	private int getClosestNeighbor(MyBSTNode root, int key, int res) {
 		if (root == null)
 			return res;
-		if (key < root.data) {
+		if (root.data > key) {
 			return getClosestNeighbor(root.left, key, res);
 		}
 		res = root.data; // If key Equal or greater than root, update res.
-		if (key > root.data) {
+		if (root.data < key) {
 			return getClosestNeighbor(root.right, key, res);
 		}
 		return res;

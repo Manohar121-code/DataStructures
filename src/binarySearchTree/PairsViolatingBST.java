@@ -1,5 +1,8 @@
 package binarySearchTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PairsViolatingBST {
 	public static void main(String[] args) {
 		MyBST bstObj = new MyBST();
@@ -15,11 +18,29 @@ public class PairsViolatingBST {
 		System.out.println();
 
 		PairsViolatingBST obj = new PairsViolatingBST();
-		MyBSTNode root = obj.pairsViolatingBST(bstObj.root);
+		int count = obj.doOperation(bstObj.root);
+		System.out.println("Number of pairs Violating : "+count);
+	}
+	
+	
+	private int doOperation(MyBSTNode root) {
+		pairsViolatingBST(root, new ArrayList<Integer>());
+		return count;
 	}
 
-	private MyBSTNode pairsViolatingBST(MyBSTNode root) {
-		
-		return null;
+	private int count = 0;
+
+	private void pairsViolatingBST(MyBSTNode root, List<Integer> list) {
+		if (root == null)
+			return;
+		pairsViolatingBST(root.left, list);
+		for (Integer i : list) {
+			if (i > root.data) {
+				System.out.println("("+i+", "+root.data+")");
+				count++;
+			}
+		}
+		list.add(root.data);
+		pairsViolatingBST(root.right, list);
 	}
 }
