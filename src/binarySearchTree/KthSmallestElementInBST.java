@@ -15,8 +15,6 @@ public class KthSmallestElementInBST {
 	}
 	
 	private int num = -1;
-	private int result = -1;
-	
 	private void doOperation(MyBSTNode root, int k) {
 		num = k;
 		findKthSmallestElement(root);
@@ -27,7 +25,7 @@ public class KthSmallestElementInBST {
 			return;
 		findKthSmallestElement(root.left);
 		if (--num == 0)
-			result = root.data;
+			System.out.println(root.data);
 		findKthSmallestElement(root.right);
 	}
 }
