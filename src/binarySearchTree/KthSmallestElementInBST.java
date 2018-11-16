@@ -11,10 +11,23 @@ public class KthSmallestElementInBST {
 
 		KthSmallestElementInBST obj = new KthSmallestElementInBST();
 		int k = 3;
-		obj.findKthSmallestElement(bstObj.root, k);
+		obj.doOperation(bstObj.root, k);
+	}
+	
+	private int num = -1;
+	private int result = -1;
+	
+	private void doOperation(MyBSTNode root, int k) {
+		num = k;
+		findKthSmallestElement(root);
 	}
 
-	private void findKthSmallestElement(MyBSTNode root, int k) {
-		
+	private void findKthSmallestElement(MyBSTNode root) {
+		if (root == null || num == 0)
+			return;
+		findKthSmallestElement(root.left);
+		if (--num == 0)
+			result = root.data;
+		findKthSmallestElement(root.right);
 	}
 }
