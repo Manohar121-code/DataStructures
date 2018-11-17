@@ -7,7 +7,7 @@ import java.util.Set;
 public class Peka {
 	public static void main(String[] args) {
 		String N = "Nithish", M = "Manohar", S = "Sandulu";
-		int perGame = 50;
+		int perGame = 20;
 		Map<String, Integer> mapObj = new HashMap<String, Integer>();
 		mapObj.put(N, 0);
 		mapObj.put(M, 0);
