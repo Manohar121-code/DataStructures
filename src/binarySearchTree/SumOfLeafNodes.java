@@ -12,8 +12,15 @@ public class SumOfLeafNodes {
 		bstObj.insert(14);
 
 		SumOfLeafNodes obj = new SumOfLeafNodes();
-		
-//		MyBSTNode lcaObj = obj.FindLCA(bstObj.root, n1, n2);
-//		System.out.println(lcaObj != null ? lcaObj.data : "Nothing found");
+		int leafSum = obj.doOperation(bstObj.root);
+		System.out.println(leafSum);
+	}
+
+	private int doOperation(MyBSTNode root) {
+		if (root == null)
+			return 0;
+		if (root.left == null && root.right == null)
+			return root.data;
+		return doOperation(root.left) + doOperation(root.right);
 	}
 }
