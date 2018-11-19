@@ -1,5 +1,8 @@
 package binarySearchTree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MyBST {
 	MyBSTNode root;
 
@@ -45,7 +48,16 @@ public class MyBST {
 	}
 	
 	public void levelOrder(MyBSTNode root) {
-		//do it
+		Queue<MyBSTNode> queueObj = new LinkedList<>();
+		queueObj.add(root);
+		while (!queueObj.isEmpty()) {
+			MyBSTNode head = queueObj.poll();
+			System.out.print(head.data+" ");
+			if (head.left != null)
+				queueObj.add(head.left);
+			if (head.right != null)
+				queueObj.add(head.right);
+		}
 	}
 
 	private void printInOrder() {
