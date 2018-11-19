@@ -43,6 +43,10 @@ public class MyBST {
 			System.out.print(root.data + " ");
 		}
 	}
+	
+	public void levelOrder(MyBSTNode root) {
+		//do it
+	}
 
 	private void printInOrder() {
 		System.out.print("InOrder -> ");
@@ -59,6 +63,12 @@ public class MyBST {
 	private void printPostOrder() {
 		System.out.print("PostOrder -> ");
 		postOrder(root);
+		System.out.println();
+	}
+	
+	private void printLevelOrder() {
+		System.out.print("LevelOrder -> ");
+		levelOrder(root);
 		System.out.println();
 	}
 
@@ -199,6 +209,7 @@ public class MyBST {
 		bstObj.printInOrder();
 		bstObj.printPreOrder();
 		bstObj.printPostOrder();
+		bstObj.printLevelOrder();
 
 		// SEARCH
 		System.out.println(bstObj.search(10) ? "found -> 10" : "Not found -> 10");
