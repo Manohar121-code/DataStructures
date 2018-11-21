@@ -4,7 +4,8 @@ import java.util.Stack;
 
 public class FindClosestElementInBST {
 	public static void main(String[] args) {
-		int[] arr = { 9, 4, 3, 6, 5, 7, 17, 22, 20 };
+//		int[] arr = { 9, 4, 3, 6, 5, 7, 17, 22, 20 };
+		int[] arr = {100, 110, 10, 22, 23, 24, 25, 27, 34, 44, 55, 66, 77, 88, 92, 93, 94, 97};
 		MyBST bstObj = new MyBST();
 		for (int i : arr) {
 			bstObj.insert(i);
@@ -14,6 +15,7 @@ public class FindClosestElementInBST {
 		System.out.println(obj.doOperation(bstObj.root, 4));
 		System.out.println(obj.doOperation(bstObj.root, 18));
 		System.out.println(obj.doOperation(bstObj.root, 12));
+		System.out.println(obj.doOperation(bstObj.root, 98));
 	}
 
 	private int doOperation(MyBSTNode root, int k) {
