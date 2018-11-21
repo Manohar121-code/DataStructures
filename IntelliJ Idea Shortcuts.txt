@@ -1,0 +1,22 @@
+open resource ctrl + N
+
+You can quickly find all places where a particular class, method or variable is used in the whole project by positioning the caret at the symbol's name or at its usage in code and pressing Alt+F7 (Edit | Find | Find Usages in the popup menu).
+
+To quickly see the documentation for a class or method at caret, press Ctrl+Q (View | Quick Documentation).
+ 
+You can quickly navigate in the currently edited file with Ctrl+F12 (Navigate | File Structure).
+It shows the list of members of the current class. Select an element you want to navigate to and press the Enter key or the F4 key.
+To easily locate an item in the list, just start typing its name.
+
+To try it, place the caret at the symbol you want to rename, and press Shift+F6 (Refactor | Rename). Type the new name in the popup window that appears, or select one of the suggested names, and press Enter.
+
+You may easily override methods of the base class by pressing Ctrl+O (Code | Override Methods).
+To implement methods of the interfaces that the current class implements (or of the abstract base class), use Ctrl+I (Code | Implement methods).
+
+search everything - Double Shift
+
+goto file ctrl + shift + N
+
+recent files ctrl + E
+
+Navigation Bar Alt + Home
