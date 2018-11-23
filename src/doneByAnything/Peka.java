@@ -26,5 +26,14 @@ public class Peka {
 		for (String string : keySet) {
 			System.out.println(string+" -> "+mapObj.get(string));
 		}
+		
+		/*System.out.println("----------------");
+		Map<String, Integer> mm = new HashMap<>();
+		for (String s : keySet) {
+			if (mm.containsKey(s))
+				mm.put(s, mm.get(s) + 1);
+			else
+				mm.put(s, 1);
+		}*/
 	}
 }
