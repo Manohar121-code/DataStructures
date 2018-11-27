@@ -2,12 +2,55 @@ package binarySearchTree;
 
 import java.util.Stack;
 
+import linkedList.Block;
+import linkedList.MyLinkedList;
+
 public class PreOrderToPostOrderInBST {
 	public static void main(String[] args) {
 		int[] arr = {40, 30, 25, 32, 35, 80, 90, 100, 120};
 
 		PreOrderToPostOrderInBST obj = new PreOrderToPostOrderInBST();
-		new MyBST().postOrder(obj.doOperation(arr));
+		if (new CheckPreOrderOrNot().checkPreOrderOrNot(arr)) {
+			new MyBST().postOrder(obj.doOperation(arr));
+			MyLinkedList LList = new MyLinkedList();
+			for (int i : arr) {
+				LList.add(i);
+			}
+			Block start = obj.doByLinkedList(LList.getHead());
+		} else
+			System.out.println("NO");
+	}
+
+	private Block doByLinkedList(Block head) {
+		if (head == null)
+			return null;
+		int count = 0;
+		Block lastLeftBlock = head, firstRightBlock = null, lastRightBlock = null;
+		head.setNext(null);
+		while (lastLeftBlock != null && lastLeftBlock.getNext() != null && head.getValue() > lastLeftBlock.getNext().getValue()) {
+			count++;
+			lastLeftBlock = lastLeftBlock.getNext();
+		}
+		
+		firstRightBlock = lastLeftBlock.getNext();
+		lastLeftBlock.setNext(null);
+		return LList;
+		/*MyLinkedList left = doByLinkedList(LList);
+		MyLinkedList right = doByLinkedList(LList);*/
+		
+		/*if (left != null && right != null) {
+			left.addAll(right);
+			left.addLast(root);
+			return left;
+		} else if (left != null && right == null) {
+			left.addLast(root);
+			return left
+		} else if (left == null && right != null) {
+			right.addLast(root);
+			return right;
+		} else {
+			return 
+		}*/
 	}
 
 	//OP : 25, 35, 32, 30, 120, 100, 90, 80, 40
