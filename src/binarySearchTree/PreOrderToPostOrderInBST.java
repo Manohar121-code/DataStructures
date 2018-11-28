@@ -1,5 +1,7 @@
 package binarySearchTree;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import linkedList.Block;
@@ -13,44 +15,35 @@ public class PreOrderToPostOrderInBST {
 		if (new CheckPreOrderOrNot().checkPreOrderOrNot(arr)) {
 			new MyBST().postOrder(obj.doOperation(arr));
 			MyLinkedList LList = new MyLinkedList();
+			System.out.println();
 			for (int i : arr) {
 				LList.add(i);
 			}
-			Block start = obj.doByLinkedList(LList.getHead());
+			List<Integer> finalList = new ArrayList<Integer>();
+			obj.doByLinkedList(LList.getHead(), finalList);
+			System.out.println(finalList);
 		} else
 			System.out.println("NO");
 	}
 
-	private Block doByLinkedList(Block head) {
-		if (head == null)
-			return null;
-		int count = 0;
-		Block lastLeftBlock = head, firstRightBlock = null, lastRightBlock = null;
-		head.setNext(null);
+	private void doByLinkedList(Block head, List<Integer> finalList) {
+		Block lastLeftBlock = head, firstLeftBlock = null, firstRightBlock = null;
 		while (lastLeftBlock != null && lastLeftBlock.getNext() != null && head.getValue() > lastLeftBlock.getNext().getValue()) {
-			count++;
 			lastLeftBlock = lastLeftBlock.getNext();
 		}
+		if (head != lastLeftBlock)
+			firstLeftBlock = head.getNext();
+		else
+			firstLeftBlock = null;
 		
 		firstRightBlock = lastLeftBlock.getNext();
 		lastLeftBlock.setNext(null);
-		return LList;
-		/*MyLinkedList left = doByLinkedList(LList);
-		MyLinkedList right = doByLinkedList(LList);*/
-		
-		/*if (left != null && right != null) {
-			left.addAll(right);
-			left.addLast(root);
-			return left;
-		} else if (left != null && right == null) {
-			left.addLast(root);
-			return left
-		} else if (left == null && right != null) {
-			right.addLast(root);
-			return right;
-		} else {
-			return 
-		}*/
+		head.setNext(null);
+		if (firstLeftBlock != null)
+			doByLinkedList(firstLeftBlock, finalList);
+		if (firstRightBlock != null)
+			doByLinkedList(firstRightBlock, finalList);
+		finalList.add(head.getValue());
 	}
 
 	//OP : 25, 35, 32, 30, 120, 100, 90, 80, 40
