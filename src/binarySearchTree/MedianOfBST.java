@@ -1,5 +1,8 @@
 package binarySearchTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MedianOfBST {
 	public static void main(String[] args) {
 		MyBST bstObj = new MyBST();
@@ -10,17 +13,22 @@ public class MedianOfBST {
 		}
 		
 		MedianOfBST obj = new MedianOfBST();
-		int numOfNodes = obj.countNodes(bstObj.root);
-		System.out.println(obj.getMedian(bstObj.root, numOfNodes));
+		System.out.println(obj.getMedian(bstObj.root));
 	}
 
-	private int getMedian(MyBSTNode root, int numOfNodes) {
-		
+	private int getMedian(MyBSTNode root) {
+		List<Integer> list = new ArrayList<>();
+		fillInList(root, list);
+		int length = list.size(), mid = length/2;
+		int median = (length % 2 == 0) ? (list.get(mid-1) + list.get(mid)) / 2 : list.get(mid);
+		return median;
 	}
-
-	private int countNodes(MyBSTNode root) {
+	
+	private void fillInList(MyBSTNode root, List<Integer> list) {
 		if (root == null)
-			return 0;
-		return countNodes(root.left) + 1 + countNodes(root.right);
+			return;
+		fillInList(root.left, list);
+		list.add(root.data);
+		fillInList(root.right, list);
 	}
 }
