@@ -44,15 +44,16 @@ public class LargestBSTInBT {
 		doOperation2(root.data, root, root.data);
 		return maxNumOfNodes2;
 	}
-	//leftNodesCount.getNode().data + 1 + rightNodesCount.getNode().data
+	
 	private Util doOperation2(int start, MyBSTNode root, int end) {
 		if (root == null)
 			return new Util(start, 0, end);
 		Util leftNodesCount = doOperation2(root.data, root.left, root.data);
 		Util rightNodesCount = doOperation2(root.data, root.right, root.data);
-//		int result = (root.left == null || root.left.data < root.data) && (root.right == null || root.data < root.right.data) ? leftNodesCount + 1 + rightNodesCount : 1;
 		Util result = (leftNodesCount != null && (root.left ==null || (root.left.data < root.data && root.data > leftNodesCount.getEnd()))) &&
-				(rightNodesCount != null && (root.right == null || (root.data < root.right.data && root.data < rightNodesCount.getStart()))) ? new Util(leftNodesCount.getStart(), leftNodesCount.getCount() + 1 + rightNodesCount.getCount(), rightNodesCount.getEnd()) : null;
+				(rightNodesCount != null && (root.right == null || (root.data < root.right.data && root.data < rightNodesCount.getStart()))) 
+				? new Util(leftNodesCount.getStart(), leftNodesCount.getCount() + 1 + rightNodesCount.getCount(), rightNodesCount.getEnd()) 
+				: null;
 		if (result != null)
 			maxNumOfNodes2 = Math.max(maxNumOfNodes2, result.getCount());
 		return result;
