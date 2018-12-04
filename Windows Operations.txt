@@ -1,0 +1,5 @@
+Press the Windows logo key+R to bring up the Run dialog box. In the Open line, copy/paste the following text.
+
+shell:::{80F3F1D5-FECA-45F3-BC32-752C152E456E}
+
+Press OK.
