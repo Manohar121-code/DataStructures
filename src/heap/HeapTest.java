@@ -12,7 +12,7 @@ class Heap {
 
 	/** Constructor **/
 	public Heap(int mx) {
-		maxSize = mx;
+		maxSize = mx+1;
 		heapSize = 0;
 		heapArray = new int[maxSize];
 	}
@@ -120,6 +120,6 @@ public class HeapTest {
 
 			System.out.println("\nDo you want to continue (Type y or n) \n");
 			ch = scan.next().charAt(0);
-		} while (/*ch == 'Y' || ch == 'y'*/ true);
+		} while (ch == 'Y' || ch == 'y');
 	}
 }
