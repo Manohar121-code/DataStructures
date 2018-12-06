@@ -23,7 +23,10 @@ public class PrintBtInVerticalOrder {
 		root.left.left.left.left.left.right.right.right.right = new BTNode(13);
 		root.left.left.left.left.left.right.right.right.right.right = new BTNode(
 				14);
-//		root.left.right.left = new BTNode(100);
+		root.left.right.left = new BTNode(100);
+		root.right = new BTNode(1000);
+		root.right.right = new BTNode(1111);
+		root.right.right.left = new BTNode(2222);
 
 		PrintBtInVerticalOrder obj = new PrintBtInVerticalOrder();
 		obj.printVerticalOrder(root);
@@ -32,20 +35,23 @@ public class PrintBtInVerticalOrder {
 	private List<BTNode> nodeList = new ArrayList<>();
 
 	private void printVerticalOrder(BTNode root) {
-		doOperation(root, 0);
+		doOperation(root, 1, 0);
 		Collections.sort(nodeList, new ColumnComparator());
 		for (BTNode btNode : nodeList) {
-			System.out.print(btNode.data+" ");
+			System.out.print(btNode.data/*+"-"+btNode.column*/+" ");
+//			System.out.println(btNode.data+"-"+btNode.row+" "+btNode.column+" ");
 		}
 	}
 
-	private int doOperation(BTNode root, int columnNum) {
+	private int doOperation(BTNode root, int rowNum, int columnNum) {
 		if (root == null)
-			return columnNum;
-		int leftColumnNum = doOperation(root.left, columnNum);
-		root.column = Math.max(root.column, leftColumnNum+1);nodeList.add(root);
-		int rightColumnNum = doOperation(root.right, root.column);
-		return root.column;
+			return (columnNum < 0) ? 0 : columnNum;
+		int leftColumnNum = doOperation(root.left, rowNum+1, columnNum-1);
+		root.row = rowNum;
+		root.column = Math.max(root.column, Math.max(leftColumnNum+1, columnNum+1));
+		nodeList.add(root);
+		int rightColumnNum = doOperation(root.right, rowNum+1, root.column);
+		return Math.max(root.column, columnNum);
 	}
 }
 
@@ -53,10 +59,11 @@ class BTNode {
 	BTNode left;
 	BTNode right;
 	int data;
-	int column;
+	int row, column;
 
 	public BTNode(int data) {
 		this.data = data;
+		this.row = 0;
 		this.column = 0;
 		this.left = this.right = null;
 	}
@@ -68,13 +75,12 @@ class ColumnComparator implements Comparator {
 		BTNode s2 = (BTNode) o2;
 
 		if (s1.column == s2.column) {
-			return 0;
-//			if (s1.data == s2.data)
-//				return 0;
-//			else if (s1.data > s2.data)
-//				return 1;
-//			else
-//				return -1;
+			if (s1.row == s2.row)
+				return 0;
+			else if (s1.row > s2.row)
+				return 1;
+			else
+				return -1;
 		}
 		else if (s1.column > s2.column)
 			return 1;
