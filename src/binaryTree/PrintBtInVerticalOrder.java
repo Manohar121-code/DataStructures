@@ -38,7 +38,7 @@ public class PrintBtInVerticalOrder {
 		doOperation(root, 1, 0);
 		Collections.sort(nodeList, new ColumnComparator());
 		for (BTNode btNode : nodeList) {
-			System.out.print(btNode.data/*+"-"+btNode.column*/+" ");
+			System.out.print(btNode.data+" ");
 //			System.out.println(btNode.data+"-"+btNode.row+" "+btNode.column+" ");
 		}
 	}
