@@ -129,10 +129,4 @@ class MinHeap {
 		}
 		harr[parentIndex] = lastEle;
 	}
-	
-	
-	
-	
-	
-	
 }
