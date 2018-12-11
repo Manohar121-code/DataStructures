@@ -11,8 +11,25 @@ public class HeapSort {
 		}
 	}
 
+	// 0 15 10 8 5 2 3 6 1
 	private void doHeapSort(int[] arr, int length) {
-		
+		while (length > 0) {
+			int smallTemp = arr[length-1];
+			arr[length-1] = arr[1];
+			arr[1] = smallTemp;
+			length--;
+			int parentIndex = 1, childIndex = parentIndex*2, parentVal = arr[parentIndex];
+			while (childIndex <= length) {
+				if (childIndex+1 <= length && arr[childIndex+1] > arr[childIndex])
+					childIndex++;
+				if (arr[childIndex] > parentVal) {
+					arr[parentIndex] = arr[childIndex];
+					parentIndex = childIndex;
+					childIndex = parentIndex*2;
+				}
+			}
+			arr[parentIndex] = parentVal;
+		}
 	}
 
 	private void doMaxHeapify(int[] arr) {
