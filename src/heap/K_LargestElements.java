@@ -1,19 +1,45 @@
 package heap;
 
-public class HeapSort {
-	public static void main(String[] args) {
-		int[] arr = {0,1,3,5,2,9,6,10,8,15,4};
-		HeapSort obj = new HeapSort();
+import java.util.Scanner;
+
+public class K_LargestElements {
+	public static void main(String[] args) {/*
+//		int[] arr = {0, 12, 5, 787, 1, 23};
+//		int k = 2;
+		
+		int[] arr = {0, 486, 94, 344};
+		int k = 1, count = 0;
+		K_LargestElements obj = new K_LargestElements();
 		obj.doMaxHeapify(arr);
-		obj.doHeapSort(arr, arr.length-1);
-		for (int i = 1; i < arr.length; i++) {
+		obj.get_K_Elements(arr, k);
+		for (int i = arr.length-1; count++ < k; i--) {
 			System.out.print(arr[i]+" ");
 		}
-	}
+		System.out.println();
+	*/
 
-	// 0 15 10 8 5 2 3 6 1
-	private void doHeapSort(int[] arr, int lastIndex) {
-		while (lastIndex > 0) {
+		Scanner scr = new Scanner(System.in);
+		int testCases = scr.nextInt();
+		while (testCases-- > 0) {
+			int length = scr.nextInt();
+			int k = scr.nextInt(), count = 0;
+			int[] arr = new int[length+1];
+			for (int i = 1; i <= length; i++) {
+				arr[i] = scr.nextInt();
+			}
+			K_LargestElements obj = new K_LargestElements();
+	    	obj.doMaxHeapify(arr);
+		    obj.get_K_Elements(arr, k);
+		    for (int i = arr.length-1; count++ < k; i--) {
+		    	System.out.print(arr[i]+" ");
+		    }
+		    System.out.println();
+		}
+	}
+	
+	private void get_K_Elements(int[] arr, int k) {
+		int lastIndex = arr.length-1;
+		while (lastIndex > (arr.length-1) - k) {
 			int smallTemp = arr[lastIndex];
 			arr[lastIndex] = arr[1];
 			arr[1] = smallTemp;
