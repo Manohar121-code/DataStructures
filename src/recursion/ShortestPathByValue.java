@@ -47,9 +47,12 @@ public class ShortestPathByValue {
 		copyArr = new int[rows][cols];
 		obj.fillMaxValues();
 		// start & end points
-		int x1 = 0, y1 = 0;
+		/*int x1 = 0, y1 = 0;
 		x2 = 14;
-		y2 = 12;
+		y2 = 12;*/
+		int x1 = 12, y1 = 5;
+		x2 = 3;
+		y2 = 7;
 		// validation
 		if (obj.validate(x1, y1, x2, y2)) {
 			long startTime = System.nanoTime();
