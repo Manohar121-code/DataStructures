@@ -48,7 +48,7 @@ class Node {
 	}
 };
 
-public class ChessKnight {
+public class ChessKnightWalk {
 	// Below arrays details all 8 possible movements
 	// for a knight
 	private static int row[] = { 2, 2, -2, -2, 1, 1, -1, -1 };
