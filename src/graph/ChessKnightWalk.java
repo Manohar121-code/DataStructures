@@ -15,13 +15,14 @@ public class ChessKnightWalk {
 		int testCases = scr.nextInt();
 		while (testCases-- > 0) {
 			int X = scr.nextInt(), Y = scr.nextInt();
-			ChessBlock src = new ChessBlock(scr.nextInt(), scr.nextInt(), 0);
-			ChessBlock dst = new ChessBlock(scr.nextInt(), scr.nextInt(), 0);
-			System.out.println(obj.doOperation(src, dst, X, Y));
+			ChessBlock src = new ChessBlock(scr.nextInt()-1, scr.nextInt()-1, 0);
+			ChessBlock dst = new ChessBlock(scr.nextInt()-1, scr.nextInt()-1, 0);
+			System.out.println(obj.doOperation2(src, dst, X, Y));
 		}
 	}
 
-	private int doOperation(ChessBlock src, ChessBlock dst, int X, int Y) {
+	/*adding into map after poll
+	 private int doOperation(ChessBlock src, ChessBlock dst, int X, int Y) {
 		Map<ChessBlock, Boolean> mapObj = new HashMap<ChessBlock, Boolean>();
 		Queue<ChessBlock> queueObj = new LinkedList<ChessBlock>();
 		queueObj.add(src);
@@ -36,6 +37,30 @@ public class ChessKnightWalk {
 					if (isSafe(x+xArr[j], y+yArr[j], X, Y)) {
 						queueObj.add(new ChessBlock(x+xArr[j], y+yArr[j], frontBlock.moves+1));
 					}
+				}
+			}
+		}
+		return 0;
+	}*/
+	
+	//adding into map in for loop
+	private int doOperation2(ChessBlock src, ChessBlock dst, int X, int Y) {
+		if (src.equals(dst))
+			return 0;
+		Queue<ChessBlock> queueObj = new LinkedList<ChessBlock>();
+		queueObj.add(src);
+		Map<ChessBlock, Boolean> mapObj = new HashMap<ChessBlock, Boolean>();
+		mapObj.put(src, true);
+		while (!queueObj.isEmpty()) {
+			ChessBlock frontBlock = queueObj.poll();
+			int x = frontBlock.x, y = frontBlock.y;
+			for (int j = 0; j < xArr.length; j++) {
+				ChessBlock curr = new ChessBlock(x+xArr[j], y+yArr[j], frontBlock.moves+1);
+				if (isSafe(curr.x, curr.y, X, Y) && mapObj.get(curr) == null) {
+					if (dst.x == curr.x && dst.y == curr.y)
+						return curr.moves;
+					queueObj.add(curr);
+					mapObj.put(curr, true);
 				}
 			}
 		}
@@ -61,7 +86,6 @@ class ChessBlock {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + moves;
 		result = prime * result + x;
 		result = prime * result + y;
 		return result;
@@ -76,8 +100,6 @@ class ChessBlock {
 		if (getClass() != obj.getClass())
 			return false;
 		ChessBlock other = (ChessBlock) obj;
-		if (moves != other.moves)
-			return false;
 		if (x != other.x)
 			return false;
 		if (y != other.y)

@@ -70,7 +70,7 @@ public class DFSOfGraph {
 		while (iter.hasNext()) {
 			int n = iter.next();
 			if (!visited[n]) {
-				DFS(n, adj, visited);
+				DFSByGFG(n, adj, visited);
 			}
 		}
 	}
