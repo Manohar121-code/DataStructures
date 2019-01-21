@@ -96,7 +96,9 @@ public class IsBipartiteGFG {
 		// if we add 2->4 edge, graph is becomes non-Bipartite
 		);*/
 
-		List<Edge> edges = Arrays.asList(new Edge(1, 2),/* new Edge(2, 3),*/ new Edge(1, 3));
+//		List<Edge> edges = Arrays.asList(new Edge(1, 2),/* new Edge(2, 3),*/ new Edge(1, 3));
+		
+		List<Edge> edges = Arrays.asList(new Edge(1, 5), new Edge(2, 4), new Edge(3, 4), new Edge(2, 3));
 		
 		// Set number of vertices in the graph
 		final int N = 10;
