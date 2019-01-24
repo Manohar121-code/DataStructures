@@ -10,7 +10,7 @@ public class LongestCommonSubString {
 //		String s2 = "QHNWNKUEWHSQMGBBfaircUQCLJJIVSWMDKQTBXIXMVTRRBLJPTNSNFWZQFJMAFADRRWSOFSBCNUVQHFFB";
 //		String s1 = "xyzabcxdefqyu";
 //		String s2 = "jhkabcxdfefjabcabcxdefddfh";
-		System.out.println("djfhjdf");
+		System.out.println("Enter below");
 		Scanner scr = new Scanner(System.in);
 		int testCases = scr.nextInt();
 		while (testCases-- > 0) {
@@ -31,6 +31,12 @@ public class LongestCommonSubString {
 			findLCSS2pointO(maxLenStr,minLenStr,maxLen,minLen);
 			long endTime2 = System.nanoTime();
 			System.out.println("Total time taken by 2.0 : "+ (endTime2 - startTime2));
+			
+			long startTime3 = System.nanoTime();
+			int result = findLongestCommonSubstringByGFG(maxLenStr,minLenStr,maxLen,minLen);
+			long endTime3 = System.nanoTime();
+			System.out.println("by 3.0 : "+result);
+			System.out.println("Total time taken by 3.0 : "+ (endTime3 - startTime3));
 		}
 	}
 
@@ -88,5 +94,23 @@ jhkabcxdfexyzfjabcabcxyzabcxdefqdefddfh
 		}
 		System.out.println("by 2.0 : "+resStr);
 	}
+	
+	private static int findLongestCommonSubstringByGFG(String s1,String s2,int m,int n){
+        int LCS[][] = new int[m+1][n+1];
+        int len = 0;
+        for(int j=0;j<=m;j++){
+            for(int k=0;k<=n;k++){
+                if(j == 0 || k== 0){
+                    LCS[j][k] = 0;
+                }else if(s1.charAt(j-1) == s2.charAt(k-1)){
+                    LCS[j][k] = LCS[j-1][k-1]+1;
+                    len = Math.max(LCS[j][k],len); 
+                }else{
+                    LCS[j][k] = 0;
+                }
+            }
+        }
+        return len;
+    }
 
 }
