@@ -1,9 +1,11 @@
 package recursion;
 
-import java.util.Scanner;
-
 public class FloodFillAlgorithm {
-	private static int rows, cols;
+	public static void main(String[] args) {
+		
+	}
+	
+	/*private static int rows, cols;
 	public static void main(String[] args) {
 		FloodFillAlgorithm obj = new FloodFillAlgorithm();
 		rows = 3;
@@ -21,7 +23,7 @@ public class FloodFillAlgorithm {
 		obj.printArray(arr, rows, cols);
 	}
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		FloodFillAlgorithm obj = new FloodFillAlgorithm();
 		Scanner scr = new Scanner(System.in);
 		int t = scr.nextInt();
@@ -41,7 +43,7 @@ public class FloodFillAlgorithm {
 			obj.printArray(arr, rows, cols);
 			t--;
 		}
-	}*/
+	}
 
 	private void doRecursion(int[][] arr, int i, int j, int oldNum, int fillNum) {
 		arr[i][j] = fillNum;
@@ -66,5 +68,5 @@ public class FloodFillAlgorithm {
 			}
 //			System.out.println();
 		}
-	}
+	}*/
 }
