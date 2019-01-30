@@ -1,8 +1,10 @@
 package graph;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
@@ -31,23 +33,29 @@ public class DetectCycleInUndirectedGraph {
 				System.out.println(0);
 		}
 	}
-
-	private Boolean isCyclic(int V, LinkedList<Integer>[] adjList) {
-		Set<Integer> passedVertexes = new HashSet<>();
-		Queue<Integer> queueObj = new ArrayDeque<Integer>();
-		boolean[] visited = new boolean[V];
-		queueObj.add(0);
-		passedVertexes.add(0);
-		while (!queueObj.isEmpty()) {
-			Integer curr = queueObj.poll();
-			for (int adjV : adjList[curr]) {
-				if (!visited[adjV]) {
-					visited[adjV] = true;
-					passedVertexes.add(adjV);
-					queueObj.add(adjV);
-				} else if (passedVertexes.contains(adjV)) {
+	private boolean isCyclic(int v, LinkedList<Integer>[] aList) {
+		boolean[] visited = new boolean[aList.length];
+		for (int i = 0; i < aList.length; i++) {
+			if (!visited[i])
+				if (doDFS(i, aList, visited, -1))
 					return true;
-				}
+		}
+		return false;
+	}
+/*
+2
+2 2
+0 1 0 0
+4 3
+0 1 1 2 2 3
+*/	private Boolean doDFS(int currentVertex, LinkedList<Integer>[] adjList, boolean[] visited, int parent) {
+		visited[currentVertex] = true;
+		for (Integer i : adjList[currentVertex]) {
+			if (i != parent) {
+				if (visited[i])
+					return true;
+				else
+					doDFS(i, adjList, visited, currentVertex);
 			}
 		}
 		return false;
