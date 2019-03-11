@@ -1,6 +1,8 @@
 package linkedList;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UnionOfThreeLL {
@@ -25,10 +27,20 @@ public class UnionOfThreeLL {
 		head3.next.next.next.next.next = new Node(12);
 		
 		MergeSortUtil mObj = new MergeSortUtil();
+		UnionOf_N_LL_Util nLLObj = new UnionOf_N_LL_Util();
+		List<Node> inputList = new ArrayList<Node>();
+		inputList.add(mObj.mergeSort(head1));
+		inputList.add(mObj.mergeSort(head2));
+		inputList.add(mObj.mergeSort(head3));
+		Node resultNode = nLLObj.doUnionFor_N_LL(inputList);
+		UnionOfThreeLL mainObj = new UnionOfThreeLL();
+		mainObj.printLL(resultNode);
+		
+		System.out.println("\n************************************");
+		
 		UnionOfThreeLLUtil obj = new UnionOfThreeLLUtil();
 		Node resultHead = obj.doUnionForThreeLL(mObj.mergeSort(head1), mObj.mergeSort(head2), mObj.mergeSort(head3));
 		
-		UnionOfThreeLL mainObj = new UnionOfThreeLL();
 		mainObj.printLL(resultHead);
 	}
 
@@ -39,6 +51,58 @@ public class UnionOfThreeLL {
 		}
 	}
 
+}
+
+class UnionOf_N_LL_Util {
+	Set<Integer> setObj = new HashSet<>();
+	public Node doUnionFor_N_LL(List<Node> inputList) {
+		Node prev = null;
+		if (inputList != null && !inputList.isEmpty()) prev = inputList.get(0);
+		for (int i = 1; i < inputList.size(); i++) {
+			setObj.removeAll(setObj);
+			prev = doMergeParts(prev, inputList.get(i));
+		}
+		return prev;
+	}
+	
+	private Node doMergeParts(Node a, Node b) {
+		Node result = null;
+		if (a == null) {
+			if (!setObj.contains(b.data)) {
+				setObj.add(b.data);
+				return b;
+			} else {
+				return doMergeParts(a, b.next);
+			}
+		}
+		if (b == null) {
+			if (!setObj.contains(a.data)) {
+				setObj.add(a.data);
+				return a;
+			} else {
+				return doMergeParts(a.next, b);
+			}
+		}
+
+		if (a.data <= b.data) {
+			if (!setObj.contains(a.data)) {
+				result = a;
+				setObj.add(a.data);
+			} else {
+				return doMergeParts(a.next, b);
+			}
+			result.next = doMergeParts(a.next, b);
+		} else {
+			if (!setObj.contains(b.data)) {
+				result = b;
+				setObj.add(b.data);
+			} else {
+				return doMergeParts(a, b.next);
+			}
+			result.next = doMergeParts(a, b.next);
+		}
+		return result;
+	}
 }
 
 class UnionOfThreeLLUtil {

@@ -2,9 +2,9 @@ package binaryTree;
 
 public class MaximumPathSum {
 	public static void main(String[] args) {
-		MyBTNode root = new MyBTNode(-15);
+		MyBTNode root = new MyBTNode(15);
 		root.left = new MyBTNode(5);
-		root.left.left = new MyBTNode(-8);
+		root.left.left = new MyBTNode(800);
 		root.left.right = new MyBTNode(1);
 		root.left.left.right = new MyBTNode(-3);
 		
@@ -31,6 +31,9 @@ public class MaximumPathSum {
 		int left = getDiameter(root.left);
 		int right = getDiameter(root.right);
 		maxSum = Math.max(maxSum, left + right + root.data);
+		if (root.left == null || root.right == null) {
+			return left + right + root.data;
+		}
 		return Math.max(left, right) + root.data;
 	}
 }
