@@ -92,7 +92,7 @@ public class LRUCache {
 		obj.set(4, 40);
 		obj.set(5, 50);
 		obj.set(6, 60);
-		obj.get(4);
+		System.out.println("4 -> " + obj.get(4));
 		obj.set(1, 100);
 		
 		System.out.println("1 -> " + obj.get(1));
